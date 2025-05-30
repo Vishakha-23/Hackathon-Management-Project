@@ -1,0 +1,104 @@
+/* Base layout */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #0d1117;
+  color: #f0f6fc;
+}
+
+/* Header styles */
+header {
+  background-color: #161b22;
+  padding: 30px 20px;
+  text-align: center;
+  border-bottom: 1px solid #30363d;
+}
+
+header h1 {
+  color: #c9d1d9;
+  font-size: 2.5rem;
+  margin: 0;
+}
+
+header p {
+  color: #8b949e;
+  margin-top: 10px;
+  font-size: 1.1rem;
+}
+
+/* Section Titles */
+.section-title {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 1.8rem;
+  color: #58a6ff;
+  border-bottom: 2px solid #30363d;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+/* Results layout */
+.result-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 0 20px 40px;
+}
+
+/* Result card styling */
+.result-card {
+  background-color: #161b22;
+  color: #f0f6fc;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+  max-width: 400px;
+  width: 100%;
+  transition: transform 0.3s ease;
+}
+
+.result-card:hover {
+  transform: translateY(-5px);
+}
+
+/* Rank badge */
+.rank-badge {
+  font-size: 1rem;
+  font-weight: bold;
+  background-color: #21262d;
+  padding: 6px 12px;
+  border-radius: 20px;
+  display: inline-block;
+  margin-bottom: 10px;
+  color: #58a6ff;
+}
+
+/* Pending projects */
+.result-card.pending {
+  background-color: #2d2a1e;
+  border-left: 4px solid #ff9800;
+  color: #fff8e1;
+}
+
+.result-card.pending .rank-badge {
+  background-color: #4a2c00;
+  color: #ff9800;
+}
+
+/* Text inside result card */
+.result-card h3 {
+  font-size: 1.4rem;
+  margin: 0 0 10px;
+  color: #c9d1d9;
+}
+
+.result-card p {
+  margin: 6px 0;
+  font-size: 1rem;
+  color: #c9d1d9;
+}
+
+.result-card strong {
+  color: #8b949e;
+}

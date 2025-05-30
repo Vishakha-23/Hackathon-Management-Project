@@ -232,3 +232,19 @@ button:hover {
 .team-card:hover {
   transform: scale(1.02);
 }
+.see-results-btn {
+  margin-top: 20px;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  background-color: #1565c0;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.see-results-btn:hover {
+  background-color: #0d3d75;
+}
