@@ -63,3 +63,7 @@ function loadProjectsLive() {
 }
 
 loadProjectsLive();
+const seeResultsBtn = document.getElementById('seeResultsBtn');
+seeResultsBtn.addEventListener('click', () => {
+  window.location.href = 'result.html';
+});
