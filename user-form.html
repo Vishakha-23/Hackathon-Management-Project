@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>User Submission Form</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="blue-bg">
+    <h1>Submit Your Project Here</h1>
+    <form id="userForm">
+  <label for="teamName">Team Name (unique):</label>
+  <input type="text" id="teamName" name="teamName" required placeholder="Enter your team name" />
+
+  <label for="members">Team Member Names (comma separated):</label>
+  <input type="text" id="members" name="members" required placeholder="Enter team member details" />
+
+  <label for="projectName">Project Name:</label>
+  <input type="text" id="projectName" name="projectName" required placeholder="Enter your project name" />
+
+  <label for="description">Project Description:</label>
+  <textarea id="description" name="description" required placeholder="Describe your project here"></textarea>
+
+  <label for="repoLink">Project Repo Link:</label>
+  <input type="url" id="repoLink" name="repoLink" required placeholder="https://github.com/your-project" />
+
+  <label for="demoLink">Demo Link (optional):</label>
+  <input type="url" id="demoLink" name="demoLink" placeholder="https://your-demo-link.com" />
+
+  <button type="submit">Submit</button>
+</form>
+
+  </div>
+  <script src="firebase-config.js"></script>
+  <script src="user-form.js"></script>
+</body>
+</html>
