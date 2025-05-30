@@ -136,5 +136,6 @@ resetBtn.addEventListener('click', async () => {
   }
 });
 document.getElementById('backBtn').addEventListener('click', () => {
-  window.history.back(); // Navigates back to the previous page
+  window.location.href = 'admin-dashboard.html';
+ // Navigates back to the previous page
 });
