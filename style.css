@@ -126,7 +126,7 @@ button:hover {
   max-width: 350px;
   width: 100%;
   text-align: left;
-  border-left: 6px solid #1565c0;
+  
 }
 
 .team-card:hover {
@@ -233,11 +233,13 @@ button:hover {
   transform: scale(1.02);
 }
 .see-results-btn {
+  max-width: fit-content;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin-top: 20px;
   padding: 12px 24px;
   font-size: 16px;
   font-weight: 600;
-  background-color: #1565c0;
+  background-color: #2519c9;
   color: white;
   border: none;
   border-radius: 8px;
