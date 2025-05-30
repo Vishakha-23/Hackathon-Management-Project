@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hackathon Results</title>
+  <link rel="stylesheet" href="result.css">
+  <script type="module" src="result.js" defer></script>
+</head>
+
+<body>
+  <header>
+    <h1>🏆 Hackathon 2025 Results</h1>
+    <p>Final team rankings based on submitted scores</p>
+  </header>
+
+  <main>
+    <!-- Scored Teams Section -->
+    <section>
+      <h2 class="section-title">📊 Scored Teams</h2>
+      <div id="resultsContainer" class="result-section"></div>
+    </section>
+
+    <!-- Pending Evaluation Section -->
+    <section>
+      <h2 class="section-title">🕓 Pending Evaluation</h2>
+      <div id="pendingContainer" class="result-section"></div>
+    </section>
+  </main>
+
+  <script type="module" src="firebase-config.js"></script>
+  <script type="module" src="result.js"></script>
+</body>
+
+</html>
