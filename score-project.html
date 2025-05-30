@@ -11,9 +11,13 @@
 <button id="backBtn" class="back-button" title="Go back">
   &#8592;
 </button>
+  <div id="successPopup" class="popup-box hidden">
+  ✅ Scores recorded successfully. Thank you!
+  </div>
+
  
   <div class="blue-bg">
-    <h1>Score the Project</h1>
+    <h1 style="color: white;">Score the Project</h1>
 
     <!-- Team/Project Info -->
     <h2 id="teamHeader"></h2>
@@ -49,7 +53,8 @@
     <p class="message" id="msg"></p>
   </div>
 
-  <script src="firebase-config.js"></script>
-  <script src="score-project.js"></script>
+  <script type="module" src="firebase-config.js"></script>
+  <script type="module" src="score-project.js"></script>
+
 </body>
 </html>
