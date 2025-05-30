@@ -1,5 +1,5 @@
-// Initialize Firestore and add user submission
-const db = firebase.firestore();
+import { db } from './firebase-config.js';
+import { doc, getDoc, setDoc, collection, serverTimestamp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
 
 const userForm = document.getElementById('userForm');
 
@@ -19,15 +19,15 @@ userForm.addEventListener('submit', async (e) => {
   }
 
   try {
-    // Check if team name exists
-    const docRef = db.collection('projects').doc(teamName);
-    const doc = await docRef.get();
-    if (doc.exists) {
+    const docRef = doc(collection(db, 'projects'), teamName);
+    const existing = await getDoc(docRef);
+
+    if (existing.exists()) {
       alert('Team name already exists. Please choose a different name.');
       return;
     }
 
-    await docRef.set({
+    await setDoc(docRef, {
       teamName,
       members: members.split(',').map(m => m.trim()),
       projectName,
@@ -36,13 +36,12 @@ userForm.addEventListener('submit', async (e) => {
       demoLink: demoLink || '',
       score: null,
       comments: '',
-      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+      createdAt: serverTimestamp(),
     });
 
-    // Redirect to the success page after successful submission
     window.location.href = 'user-success.html';
   } catch (error) {
-    console.error('Error adding document: ', error);
+    console.error('Error adding document:', error);
     alert('Error submitting project. See console for details.');
   }
 });
