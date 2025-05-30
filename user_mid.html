@@ -33,29 +33,32 @@
         gap: 100px;
     }
 
-    .box a {
-        text-decoration: none;
-        color: rgb(0, 0, 0);
+    
 
-    }
+    
+    .card {
+  background-color: white;
+  width: 140px; height: 180px;
+  border-radius: 12px;
+  color: black;
+  box-shadow: 0 2px 10px rgb(0 0 0 / 0.3);
+  cursor: pointer;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  transition: transform 0.3s ease;
+  user-select: none;
+}
 
-    .box {
+.card:hover {
+  transform: scale(1.05);
+}
 
-        height: 150px;
-        width: 200px;
-        /* border: 1px solid rgb(16, 16, 16); */
-        border-radius: 10px;
-        background-color: rgb(180, 180, 180);
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 20px;
-    }
+.card img {
+  width: 64px; height: 64px; margin-bottom: 10px;
+}
 
-    .box img {
-        width: 80px;
-    }
+.card p {
+  font-weight: 600; font-size: 18px;
+}
 </style>
 
 <body>
@@ -64,16 +67,24 @@
     <!-- <div class="head ">CODE. COMPETE. CONQUER!</div> -->
     <div class="head subhead">Join the innovation wave- register now or check your performance!</div>
     <div class="container">
-        <div class="box ">
-            <img src="register.webp" alt="">
-            <a href="user-form.html">REGISTER</a>
-        </div>
-        <div class="box ">
-            <img src="result img.png" alt="">
-            <a href="result.html">RESULT</a>
-        </div>
+        
+        <div class="card" id="register">
+        <img src="register.webp" alt="Admin Icon" />
+        <p>REGISTER</p>
+      </div>
+        <div class="card" id="result">
+        <img src="result img.png" alt="Admin Icon" />
+        <p>RESULT</p>
+      </div>
     </div>
-
+<script>
+    document.getElementById('register').onclick = () => {
+      window.location.href = 'user_mid.html';
+    };
+    document.getElementById('result').onclick = () => {
+      window.location.href = 'result.html';
+    };
+  </script>
 </body>
 
 </html>
