@@ -216,7 +216,7 @@ button:hover {
 
 
 .message {
-  color: green;
+  color: rgb(255, 205, 205);
   text-align: center;
   margin-top: 15px;
 }
@@ -249,4 +249,29 @@ button:hover {
 
 .see-results-btn:hover {
   background-color: #0d3d75;
+}
+.popup-box {
+  position: fixed;
+  top: 80px;
+  right: 30px;
+  background-color: #24b5d1;
+  color: white;
+  padding: 16px 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  font-size: 16px;
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.popup-box.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: all;
+}
+
+.hidden {
+  display: none;
 }
