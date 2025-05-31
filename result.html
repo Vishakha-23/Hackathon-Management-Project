@@ -7,34 +7,38 @@
   <link rel="stylesheet" href="result.css">
   <script type="module" src="result.js" defer></script>
   <style>
-    .back-button {
-      position: fixed;
-      top: 3px;
-      left: 10px;
-      margin-top: 10px;
-      padding: 0.6rem 1.2rem;
-      background-color: #00e5ff;
-      border: none;
-      border-radius: 20px;
-      color: #000;
-      font-weight: 600;
-      cursor: pointer;
-      transition: 0.3s ease;
-      box-shadow: 0 0 8px rgba(0, 229, 255, 0.4);
-      
-    }
+         /* Back Button Styles */
+.back-button {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(90deg, #00ffff, #ff00ff);
+  color: black;
+  border: none;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+  transition: all 0.3s ease;
+}
 
-    .back-button:hover {
-      background-color: #ff4081;
-      color: white;
-      box-shadow: 0 0 12px rgba(255, 64, 129, 0.6);
-    }
+.back-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+}
   </style>
 </head>
 
 <body>
   <header>
-    <button class="back-button" onclick="history.back()">←</button>
+     <button class="back-button" onclick="history.back()">
+    <i class="fas fa-arrow-left">←</i>
+  </button>
     <h1>🏆 Hackathon 2025 Results</h1>
     <p>Final team rankings based on submitted scores</p>
   </header>
