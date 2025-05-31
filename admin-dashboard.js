@@ -67,3 +67,7 @@ const seeResultsBtn = document.getElementById('seeResultsBtn');
 seeResultsBtn.addEventListener('click', () => {
   window.location.href = 'result.html';
 });
+// Add this at the bottom of admin-dashboard.js
+document.querySelector('.back-button').addEventListener('click', () => {
+  window.location.href = 'admin-login.html';
+});
