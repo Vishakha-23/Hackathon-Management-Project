@@ -27,7 +27,7 @@ adminLoginForm.addEventListener('submit', async (e) => {
     const adminDoc = await getDoc(adminDocRef);
 
     if (adminDoc.exists()) {
-      // ✅ Admin verified
+      //  Admin verified
       localStorage.setItem('adminLoggedIn', 'true');
       window.location.href = 'admin-dashboard.html';
     } else {
