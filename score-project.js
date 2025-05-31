@@ -29,25 +29,31 @@ if (!selectedTeam) {
 
 async function loadProjectDetails() {
   try {
-    const docRef = doc(db, 'projects', selectedTeam);
+    // Convert team name to lowercase to match how it's stored
+    const teamId = selectedTeam.toLowerCase();
+    const docRef = doc(db, 'projects', teamId);
     const docSnap = await getDoc(docRef);
 
     if (!docSnap.exists()) {
-      alert('Project not found');
+      alert('Project not found for team: ' + selectedTeam);
       window.location.href = 'admin-dashboard.html';
       return;
     }
 
     const data = docSnap.data();
 
-    teamHeader.textContent = `Team: ${data.teamName}`;
-    projectHeader.textContent = `Project: ${data.projectName}`;
+    // Debugging: log the retrieved data
+    console.log('Retrieved project data:', data);
+
+    teamHeader.textContent = `Team: ${data.teamName || 'Not available'}`;
+    projectHeader.textContent = `Project: ${data.projectName || 'Not available'}`;
 
     const repoLink = document.getElementById('repoLink');
     const demoLink = document.getElementById('demoLink');
     const projectDesc = document.getElementById('projectDesc');
     const teamMembers = document.getElementById('teamMembers');
 
+    // Handle repository link
     if (data.repoLink) {
       repoLink.href = data.repoLink;
       repoLink.textContent = 'View Repository';
@@ -56,6 +62,7 @@ async function loadProjectDetails() {
       repoLink.removeAttribute('href');
     }
 
+    // Handle demo link
     if (data.demoLink) {
       demoLink.href = data.demoLink;
       demoLink.textContent = 'View Demo';
@@ -64,11 +71,19 @@ async function loadProjectDetails() {
       demoLink.removeAttribute('href');
     }
 
-    // Updated to use correct field names
-    projectDesc.textContent = data.description || 'Not provided';
-    teamMembers.textContent = data.members?.join(', ') || 'Not provided';
+    // Handle project description
+    projectDesc.textContent = data.description || 'No description provided';
 
-    // Pre-fill existing scores/comments
+    // Handle team members
+    if (data.members && Array.isArray(data.members)) {
+      teamMembers.textContent = data.members.join(', ');
+    } else if (data.members) {
+      teamMembers.textContent = data.members;
+    } else {
+      teamMembers.textContent = 'No team members listed';
+    }
+
+    // Pre-fill existing scores if they exist
     if (data.innovation) scoreForm.innovation.value = data.innovation;
     if (data.technical) scoreForm.technical.value = data.technical;
     if (data.design) scoreForm.design.value = data.design;
@@ -82,7 +97,7 @@ async function loadProjectDetails() {
 
   } catch (error) {
     console.error('❌ Error loading project:', error);
-    alert('Error loading project details.');
+    alert('Error loading project details. See console for details.');
   }
 }
 loadProjectDetails();
@@ -109,7 +124,9 @@ scoreForm.addEventListener('submit', async (e) => {
   const totalScore = innovation + technical + design + functionality + presentation;
 
   try {
-    const docRef = doc(db, 'projects', selectedTeam);
+    const teamId = selectedTeam.toLowerCase();
+    const docRef = doc(db, 'projects', teamId);
+    
     await updateDoc(docRef, {
       innovation,
       technical,
@@ -140,7 +157,9 @@ resetBtn.addEventListener('click', async () => {
   if (!confirmReset) return;
 
   try {
-    const docRef = doc(db, 'projects', selectedTeam);
+    const teamId = selectedTeam.toLowerCase();
+    const docRef = doc(db, 'projects', teamId);
+    
     await updateDoc(docRef, {
       innovation: null,
       technical: null,
