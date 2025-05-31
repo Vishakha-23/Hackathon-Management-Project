@@ -232,15 +232,44 @@
     .see-results-btn:hover i {
       transform: translateX(4px);
     }
+      
+    /* Back Button Styles */
+.back-button {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(90deg, var(--neon-blue), var(--neon-pink));
+  color: black;
+  border: none;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+  transition: all 0.3s ease;
+}
 
+.back-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+}
     @media (max-width: 768px) {
       h1 {
         font-size: 2rem;
       }
+
+      
     }
   </style>
 </head>
 <body>
+  <button class="back-button" onclick="history.back()">
+    <i class="fas fa-arrow-left"></i>
+  </button>
   <!-- Enhanced Background Elements -->
   <div class="bg-neon-circle neon-circle-1"></div>
   <div class="bg-neon-circle neon-circle-2"></div>
