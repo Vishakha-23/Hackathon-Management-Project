@@ -4,79 +4,261 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Hackathon Portal</title>
+    <style>
+        :root {
+            --primary: #1565c0;
+            --primary-dark: #0d47a1;
+            --accent: #ffab40;
+            --white: #ffffff;
+            --light-gray: rgba(255, 255, 255, 0.9);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--white);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* New Animated Background */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(255, 171, 64, 0.15) 0%, transparent 25%),
+                radial-gradient(circle at 80% 70%, rgba(101, 214, 255, 0.15) 0%, transparent 25%),
+                linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+            z-index: -2;
+            animation: gradientShift 15s ease infinite alternate;
+        }
+
+        /* Floating Particles */
+        body::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle, rgba(255,255,255,0.2) 1px, transparent 1px),
+                radial-gradient(circle, rgba(255,255,255,0.15) 1px, transparent 1px),
+                radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 50px 50px, 80px 80px, 120px 120px;
+            z-index: -1;
+            animation: particleMove 20s linear infinite;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 0%; }
+            100% { background-position: 100% 100%; }
+        }
+
+        @keyframes particleMove {
+            0% { background-position: 0 0, 0 0, 0 0; }
+            100% { background-position: 50px 50px, 80px 80px, 120px 120px; }
+        }
+
+        .header-content {
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .head {
+            color: var(--white);
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 800;
+            margin: 2rem 0 1rem;
+            line-height: 1.2;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(to right, var(--white), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .subhead {
+            font-size: clamp(1.1rem, 3vw, 1.5rem);
+            color: var(--light-gray);
+            margin: 0 auto 3rem;
+            font-weight: 400;
+            max-width: 800px;
+            padding: 0 1rem;
+            animation: fadeIn 1s ease-out 0.2s both;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 4rem;
+            padding: 2rem;
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto 3rem;
+            animation: fadeIn 1s ease-out 0.4s both;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            width: 280px;
+            height: 320px;
+            border-radius: 20px;
+            color: var(--primary-dark);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: none;
+            position: relative;
+            overflow: hidden;
+            padding: 2rem;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1), transparent);
+            z-index: 1;
+        }
+
+        .card:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .card img {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 2rem;
+            object-fit: contain;
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+            transition: transform 0.3s ease;
+            z-index: 2;
+        }
+
+        .card:hover img {
+            transform: scale(1.1);
+        }
+
+        .card p {
+            font-weight: 700;
+            font-size: 1.6rem;
+            margin: 0;
+            color: var(--primary-dark);
+            z-index: 2;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .card p::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--accent);
+            border-radius: 3px;
+            transition: width 0.3s ease;
+        }
+
+        .card:hover p::after {
+            width: 100px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .head {
+                margin: 1.5rem 0 0.5rem;
+            }
+            
+            .subhead {
+                margin: 0 auto 2rem;
+            }
+            
+            .container {
+                gap: 2rem;
+                padding: 1rem;
+            }
+            
+            .card {
+                width: 240px;
+                height: 280px;
+                padding: 1.5rem;
+            }
+            
+            .card img {
+                width: 80px;
+                height: 80px;
+                margin-bottom: 1.5rem;
+            }
+            
+            .card p {
+                font-size: 1.4rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .card {
+                width: 90%;
+                max-width: 300px;
+                height: 220px;
+            }
+        }
+    </style>
 </head>
-<style>
-    body {
-        background-color: #1565c0;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-    .head{
-        color: rgb(193, 192, 192);
-        font-size: 50px;
-        font-weight: 600;
-        text-align: center;
-        margin-top: 50px;
-    }
-    .subhead{
-        font-size: 20px;
-   color: rgb(180, 190, 199);
-    }
-
-    .container {
-        height: 50vh;
-        width: 100vw;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background-color: #1565c0;
-        gap: 100px;
-    }
-
-    
-
-    
-    .card {
-  background-color: white;
-  width: 140px; height: 180px;
-  border-radius: 12px;
-  color: black;
-  box-shadow: 0 2px 10px rgb(0 0 0 / 0.3);
-  cursor: pointer;
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  transition: transform 0.3s ease;
-  user-select: none;
-}
-
-.card:hover {
-  transform: scale(1.05);
-}
-
-.card img {
-  width: 64px; height: 64px; margin-bottom: 10px;
-}
-
-.card p {
-  font-weight: 600; font-size: 18px;
-}
-</style>
 
 <body>
-
-    <div class="head">Welcome to the Ultimate Hackathon Experience!</div>
-    <!-- <div class="head ">CODE. COMPETE. CONQUER!</div> -->
-    <div class="head subhead">Join the innovation wave- register now or check your performance!</div>
-    <div class="container">
-        
-        <div class="card" id="register">
-        <img src="register.webp" alt="Admin Icon" />
-        <p>REGISTER</p>
-      </div>
-        <div class="card" id="result">
-        <img src="result img.png" alt="Admin Icon" />
-        <p>RESULT</p>
-      </div>
+    <div class="header-content">
+        <h1 class="head">Welcome to the Ultimate Hackathon Experience!</h1>
+        <p class="subhead">Join the innovation wave - register now or check your performance!</p>
     </div>
+    
+    <div class="container">
+        <div class="card" id="register">
+            <img src="register.webp" alt="Register Icon" />
+            <p>REGISTER</p>
+        </div>
+        <div class="card" id="result">
+            <img src="result img.png" alt="Results Icon" />
+            <p>RESULTS</p>
+        </div>
+    </div>
+
+    
 <script>
     document.getElementById('register').onclick = () => {
       window.location.href = 'user-form.html';
@@ -86,5 +268,4 @@
     };
   </script>
 </body>
-
 </html>
