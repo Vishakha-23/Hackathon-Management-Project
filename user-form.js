@@ -27,7 +27,7 @@ teamNameInput.addEventListener('input', async () => {
   if (existing.exists()) {
     teamExists = true;
     teamNameWarning.style.display = 'block';
-    teamNameWarning.textContent = '⚠️ Team name already exists. Submitting again will update the existing entry.';
+    teamNameWarning.textContent = '⚠️ Team name already exists if not yours choose a different name. Submitting again will update the existing entry!.';
   } else {
     teamExists = false;
     teamNameWarning.style.display = 'none';
