@@ -45,6 +45,8 @@ async function loadProjectDetails() {
 
     const repoLink = document.getElementById('repoLink');
     const demoLink = document.getElementById('demoLink');
+    const projectDesc = document.getElementById('projectDesc');
+    const teamMembers = document.getElementById('teamMembers');
 
     if (data.repoLink) {
       repoLink.href = data.repoLink;
@@ -60,6 +62,18 @@ async function loadProjectDetails() {
     } else {
       demoLink.textContent = 'Not provided';
       demoLink.removeAttribute('href');
+    }
+
+    if (data.projectDescription) {
+      projectDesc.textContent = data.projectDescription;
+    } else {
+      projectDesc.textContent = 'Not provided';
+    }
+
+    if (data.teamMembers && data.teamMembers.length > 0) {
+      teamMembers.textContent = data.teamMembers.join(', ');
+    } else {
+      teamMembers.textContent = 'Not provided';
     }
 
     // Pre-fill existing scores/comments
