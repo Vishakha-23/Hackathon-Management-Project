@@ -30,20 +30,103 @@
       overflow-x: hidden;
     }
 
+    /* Enhanced Background Elements */
     body::before {
       content: '';
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(circle at 20% 30%, rgba(0, 255, 255, 0.04) 0%, transparent 40%),
-        radial-gradient(circle at 80% 70%, rgba(255, 0, 255, 0.04) 0%, transparent 40%),
-        linear-gradient(135deg, #0a0a0a, #121212);
+        radial-gradient(circle at 15% 25%, rgba(0, 255, 255, 0.03) 0%, transparent 25%),
+        radial-gradient(circle at 85% 75%, rgba(255, 0, 255, 0.03) 0%, transparent 25%),
+        linear-gradient(to bottom, #080808, #0f0f0f);
       z-index: 0;
     }
 
+    /* Grid Overlay */
+    body::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(rgba(0, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 255, 0.02) 1px, transparent 1px);
+      background-size: 40px 40px;
+      z-index: 0;
+      opacity: 0.15;
+    }
+
+    /* Animated Neon Elements */
+    .bg-neon-circle {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(40px);
+      opacity: 0.15;
+      z-index: 0;
+      animation: float 15s infinite ease-in-out;
+    }
+
+    .neon-circle-1 {
+      width: 300px;
+      height: 300px;
+      background: var(--neon-blue);
+      top: 10%;
+      left: 5%;
+      animation-delay: 0s;
+    }
+
+    .neon-circle-2 {
+      width: 400px;
+      height: 400px;
+      background: var(--neon-pink);
+      bottom: 5%;
+      right: 5%;
+      animation-delay: 3s;
+    }
+
+    .neon-circle-3 {
+      width: 200px;
+      height: 200px;
+      background: var(--neon-blue);
+      top: 50%;
+      right: 20%;
+      animation-delay: 6s;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      25% { transform: translate(10px, 15px) scale(1.05); }
+      50% { transform: translate(-5px, 10px) scale(0.95); }
+      75% { transform: translate(5px, -5px) scale(1.02); }
+    }
+
+    /* Scanline Effect */
+    .scanlines {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        to bottom,
+        transparent 95%,
+        rgba(0, 255, 255, 0.03) 96%,
+        transparent 97%
+      );
+      background-size: 100% 8px;
+      pointer-events: none;
+      z-index: 1;
+      animation: scanline 8s linear infinite;
+    }
+
+    @keyframes scanline {
+      from { background-position: 0 0; }
+      to { background-position: 0 100%; }
+    }
+
+    /* Original Styles (Unchanged) */
     .container {
       position: relative;
-      z-index: 1;
+      z-index: 2;
       padding: 2rem 1rem;
       max-width: 1200px;
       margin: auto;
@@ -158,6 +241,13 @@
   </style>
 </head>
 <body>
+  <!-- Enhanced Background Elements -->
+  <div class="bg-neon-circle neon-circle-1"></div>
+  <div class="bg-neon-circle neon-circle-2"></div>
+  <div class="bg-neon-circle neon-circle-3"></div>
+  <div class="scanlines"></div>
+
+  <!-- Original Content (Unchanged) -->
   <div class="container">
     <div class="header">
       <h1>Admin Dashboard</h1>
