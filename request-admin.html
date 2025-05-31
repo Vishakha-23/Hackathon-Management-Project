@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Request Admin Access</title>
+  <style>
+    body {
+      background-color: #0d1117;
+      color: #f0f6fc;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 2rem;
+    }
+
+    form {
+      background-color: #1c1c1c;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,255,255,0.2);
+      width: 100%;
+      max-width: 400px;
+    }
+
+    label {
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    input {
+      width: 100%;
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+      border-radius: 8px;
+      border: 1px solid #444;
+      background-color: #121212;
+      color: white;
+    }
+
+    button {
+      width: 100%;
+      padding: 0.75rem;
+      background: linear-gradient(to right, #00ffff, #ff00ff);
+      border: none;
+      color: black;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .msg {
+      margin-top: 1rem;
+      color: #00ffaa;
+    }
+  </style>
+</head>
+<body>
+  <h2>Request Admin Access</h2>
+  <form id="requestForm">
+    <label for="email">Your Email:</label>
+    <input type="email" id="email" name="email" required placeholder="you@example.com" />
+    <button type="submit">Send Request</button>
+  </form>
+  <p class="msg" id="responseMsg"></p>
+
+  <script type="module">
+    import { db } from './firebase-config.js';
+    import { doc, setDoc, serverTimestamp } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js';
+
+    const requestForm = document.getElementById('requestForm');
+    const responseMsg = document.getElementById('responseMsg');
+
+    requestForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = requestForm.email.value.trim().toLowerCase();
+
+      if (!email) return;
+
+      try {
+        await setDoc(doc(db, "adminRequests", email), {
+          email,
+          requestedAt: serverTimestamp(),
+          status: "pending"
+        });
+
+        responseMsg.textContent = "✅ Request sent! You'll be contacted once approved.";
+        requestForm.reset();
+      } catch (error) {
+        console.error("Error sending request:", error);
+        responseMsg.textContent = "❌ Failed to send request. Try again.";
+      }
+    });
+  </script>
+</body>
+</html>

@@ -11,7 +11,7 @@ const msg = document.getElementById('msg');
 const teamHeader = document.getElementById('teamHeader');
 const projectHeader = document.getElementById('projectHeader');
 const resetBtn = document.getElementById('resetBtn');
-const backBtn = document.getElementById('backBtn');
+const backBtn = document.querySelector('.back-button');
 
 function checkAdminAuth() {
   if (localStorage.getItem('adminLoggedIn') !== 'true') {
@@ -64,17 +64,9 @@ async function loadProjectDetails() {
       demoLink.removeAttribute('href');
     }
 
-    if (data.projectDescription) {
-      projectDesc.textContent = data.projectDescription;
-    } else {
-      projectDesc.textContent = 'Not provided';
-    }
-
-    if (data.teamMembers && data.teamMembers.length > 0) {
-      teamMembers.textContent = data.teamMembers.join(', ');
-    } else {
-      teamMembers.textContent = 'Not provided';
-    }
+    // Updated to use correct field names
+    projectDesc.textContent = data.description || 'Not provided';
+    teamMembers.textContent = data.members?.join(', ') || 'Not provided';
 
     // Pre-fill existing scores/comments
     if (data.innovation) scoreForm.innovation.value = data.innovation;
