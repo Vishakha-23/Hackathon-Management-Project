@@ -218,38 +218,111 @@
     }
 
     /* Back Button Styles */
-.back-button {
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: linear-gradient(90deg, #00ffff, #ff00ff);
-  color: black;
-  border: none;
-  cursor: pointer;
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
-  transition: all 0.3s ease;
-}
+    .back-button {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(90deg, #00ffff, #ff00ff);
+      color: black;
+      border: none;
+      cursor: pointer;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+      transition: all 0.3s ease;
+    }
 
-.back-button:hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
-}
+    .back-button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+    }
 
-    @media (max-width: 480px) {
+    /* Media Queries */
+    @media (max-width: 768px) {
       .login-box {
-        width: 90%;
-        padding: 1.8rem;
+        width: 85%;
+        padding: 1.5rem;
       }
       
       h1 {
         font-size: 1.6rem;
+        margin-bottom: 1rem;
+      }
+      
+      .admin-icon {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+      }
+      
+      #adminLoginForm {
+        gap: 1.2rem;
+      }
+      
+      input {
+        padding: 0.8rem;
+      }
+      
+      button {
+        padding: 0.8rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .login-box {
+        width: 90%;
+        padding: 1.5rem 1.2rem;
+      }
+      
+      h1 {
+        font-size: 1.5rem;
+      }
+      
+      .bg-icons img {
+        width: 50px;
+        height: 50px;
+      }
+      
+      .back-button {
+        width: 36px;
+        height: 36px;
+        top: 15px;
+        left: 15px;
+      }
+      
+      label {
+        font-size: 0.85rem;
+      }
+      
+      input {
+        padding: 0.7rem 0.9rem;
+        font-size: 0.9rem;
+      }
+      
+      button {
+        font-size: 0.95rem;
+      }
+    }
+
+    @media (max-width: 360px) {
+      h1 {
+        font-size: 1.4rem;
+      }
+      
+      .admin-icon {
+        font-size: 1.8rem;
+      }
+      
+      .login-box {
+        padding: 1.2rem 1rem;
+      }
+      
+      #adminLoginForm {
+        gap: 1rem;
       }
     }
   </style>
