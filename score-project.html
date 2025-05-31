@@ -175,17 +175,31 @@
       display: block;
     }
 
-    .back-button {
-      position: fixed;
-      top: 20px;
-      left: 20px;
-      background-color: transparent;
-      color: var(--accent);
-      font-size: 2rem;
-      border: none;
-      cursor: pointer;
-      z-index: 10;
-    }
+    
+          /* Back Button Styles */
+.back-button {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(90deg, #00ffff, #ff00ff);
+  color: black;
+  border: none;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.back-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+}
 
     @media (max-width: 768px) {
       .container1 {
@@ -212,8 +226,9 @@
 
 <body>
 
-  <button id="backBtn" class="back-button" title="Go back">&#8592;</button>
-
+  <button class="back-button" onclick="history.back()">
+    <i class="fas fa-arrow-left">←</i>
+  </button>
   <div id="successPopup" class="popup-box">✅ Scores recorded successfully. Thank you!</div>
 
   <div class="container1">
