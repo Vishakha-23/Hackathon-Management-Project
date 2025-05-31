@@ -1,60 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Score Project</title>
   <link rel="stylesheet" href="style.css" />
 </head>
+<style>
+  .innercont1 {
+    background-color: #1565c0;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    text-align: center;
+    height: 100vh;
+    margin-left: 300px;
+  }
+
+  .container1 {
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    gap: 100px;
+    height: 100vh;
+    width: 80vw;
+    margin-top: 30px;
+  }
+
+  .head-score {
+    font-size: 50px;
+    font-weight: 700;
+    color: white;
+  }
+
+  @media (max-width: 786px){
+   .container1{
+    flex-direction: column;
+    gap: 10px;
+   }
+   .head-score{
+    font-size: 30px;
+   }
+   innercont1{
+    margin-top: 40px;
+    margin-bottom: 0px;
+    gap: 5px;
+   }
+  }
+</style>
+
 <body>
 
-<button id="backBtn" class="back-button" title="Go back">
-  &#8592;
-</button>
+  <button id="backBtn" class="back-button" title="Go back">
+    &#8592;
+  </button>
+
   <div id="successPopup" class="popup-box hidden">
-  ✅ Scores recorded successfully. Thank you!
+    ✅ Scores recorded successfully. Thank you!
   </div>
 
- 
-  <div class="blue-bg">
-    <h1 style="color: white;">Score the Project</h1>
+  <div style="color: white;" class="container1">
 
-    <!-- Team/Project Info -->
-    <h2 id="teamHeader"></h2>
-    <p id="projectHeader"></p>
+    <div class="inner-cont1">
+      <div class="head-score">Score the Project!</div>
 
-    <!-- Score Form -->
-    <form class="score-form" id="scoreForm">
-      <label for="innovation">Innovation (1-10):</label>
-      <input type="number" id="innovation" name="innovation" min="1" max="10" required placeholder="e.g. 8" />
+      <!-- Team/Project Info -->
+      <h2 id="teamHeader"></h2>
+      <p id="projectHeader"></p>
+    </div>
 
-      <label for="technical">Technical Difficulty (1-10):</label>
-      <input type="number" id="technical" name="technical" min="1" max="10" required placeholder="e.g. 7" />
 
-      <label for="design">Design (1-10):</label>
-      <input type="number" id="design" name="design" min="1" max="10" required placeholder="e.g. 9" />
+    <div class="inner-cont2">
+      <!-- Score Form -->
+      <form class="score-form" id="scoreForm">
+        <label for="innovation">Innovation (1-10):</label>
+        <input type="number" id="innovation" name="innovation" min="1" max="10" required placeholder="e.g. 8" />
 
-      <label for="functionality">Functionality (1-10):</label>
-      <input type="number" id="functionality" name="functionality" min="1" max="10" required placeholder="e.g. 9" />
+        <label for="technical">Technical Difficulty (1-10):</label>
+        <input type="number" id="technical" name="technical" min="1" max="10" required placeholder="e.g. 7" />
 
-      <label for="presentation">Presentation (1-10):</label>
-      <input type="number" id="presentation" name="presentation" min="1" max="10" required placeholder="e.g. 6" />
+        <label for="design">Design (1-10):</label>
+        <input type="number" id="design" name="design" min="1" max="10" required placeholder="e.g. 9" />
 
-      <label for="comments">Comments:</label>
-      <textarea id="comments" name="comments" placeholder="Enter feedback or remarks..."></textarea>
+        <label for="functionality">Functionality (1-10):</label>
+        <input type="number" id="functionality" name="functionality" min="1" max="10" required placeholder="e.g. 9" />
 
-      <!-- Action Buttons -->
-      <div class="form-actions">
-        <button type="submit" id="publishBtn">Publish Score</button>
-        <button type="button" id="resetBtn">Reset Scores</button>
-      </div>
-    </form>
+        <label for="presentation">Presentation (1-10):</label>
+        <input type="number" id="presentation" name="presentation" min="1" max="10" required placeholder="e.g. 6" />
 
-    <p class="message" id="msg"></p>
+        <label for="comments">Comments:</label>
+        <textarea id="comments" name="comments" placeholder="Enter feedback or remarks..."></textarea>
+
+        <!-- Action Buttons -->
+        <div class="form-actions">
+          <button type="submit" id="publishBtn">Publish Score</button>
+          <button type="button" id="resetBtn">Reset Scores</button>
+        </div>
+      </form>
+      <p class="message" id="msg"></p>
+    </div>
   </div>
 
   <script type="module" src="firebase-config.js"></script>
   <script type="module" src="score-project.js"></script>
 
 </body>
+
 </html>
