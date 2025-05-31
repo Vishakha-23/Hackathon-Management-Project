@@ -6,7 +6,6 @@ import {
   serverTimestamp
 } from 'https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js';
 
-// DOM elements
 const scoreForm = document.getElementById('scoreForm');
 const msg = document.getElementById('msg');
 const teamHeader = document.getElementById('teamHeader');
@@ -14,7 +13,6 @@ const projectHeader = document.getElementById('projectHeader');
 const resetBtn = document.getElementById('resetBtn');
 const backBtn = document.getElementById('backBtn');
 
-// ✅ Ensure admin is logged in
 function checkAdminAuth() {
   if (localStorage.getItem('adminLoggedIn') !== 'true') {
     alert('Please login as admin');
@@ -23,14 +21,12 @@ function checkAdminAuth() {
 }
 checkAdminAuth();
 
-// ✅ Load selected team
 const selectedTeam = localStorage.getItem('selectedTeam');
 if (!selectedTeam) {
   alert('No team selected');
   window.location.href = 'admin-dashboard.html';
 }
 
-// ✅ Load and display existing project details
 async function loadProjectDetails() {
   try {
     const docRef = doc(db, 'projects', selectedTeam);
@@ -44,11 +40,29 @@ async function loadProjectDetails() {
 
     const data = docSnap.data();
 
-    // Display team and project name
     teamHeader.textContent = `Team: ${data.teamName}`;
     projectHeader.textContent = `Project: ${data.projectName}`;
 
-    // Pre-fill form if data exists
+    const repoLink = document.getElementById('repoLink');
+    const demoLink = document.getElementById('demoLink');
+
+    if (data.repoLink) {
+      repoLink.href = data.repoLink;
+      repoLink.textContent = 'View Repository';
+    } else {
+      repoLink.textContent = 'Not provided';
+      repoLink.removeAttribute('href');
+    }
+
+    if (data.demoLink) {
+      demoLink.href = data.demoLink;
+      demoLink.textContent = 'View Demo';
+    } else {
+      demoLink.textContent = 'Not provided';
+      demoLink.removeAttribute('href');
+    }
+
+    // Pre-fill existing scores/comments
     if (data.innovation) scoreForm.innovation.value = data.innovation;
     if (data.technical) scoreForm.technical.value = data.technical;
     if (data.design) scoreForm.design.value = data.design;
@@ -67,7 +81,6 @@ async function loadProjectDetails() {
 }
 loadProjectDetails();
 
-// ✅ Handle form submission
 scoreForm.addEventListener('submit', async (e) => {
   e.preventDefault();
 
@@ -91,27 +104,24 @@ scoreForm.addEventListener('submit', async (e) => {
 
   try {
     const docRef = doc(db, 'projects', selectedTeam);
-
     await updateDoc(docRef, {
       innovation,
       technical,
       design,
       functionality,
       presentation,
-      score: totalScore,
       comments,
+      score: totalScore,
       scoredAt: serverTimestamp()
     });
 
-const popup = document.getElementById('successPopup');
-popup.classList.remove('hidden');
-popup.classList.add('show');
+    const popup = document.getElementById('successPopup');
+    popup.classList.add('show');
 
-setTimeout(() => {
-  popup.classList.remove('show');
-  window.location.href = 'admin-dashboard.html';
-}, 2500);
-
+    setTimeout(() => {
+      popup.classList.remove('show');
+      window.location.href = 'admin-dashboard.html';
+    }, 2500);
 
   } catch (error) {
     console.error('❌ Error submitting score:', error);
@@ -119,7 +129,6 @@ setTimeout(() => {
   }
 });
 
-// ✅ Reset score functionality
 resetBtn.addEventListener('click', async () => {
   const confirmReset = confirm("Are you sure you want to clear all scores and comments?");
   if (!confirmReset) return;
@@ -145,7 +154,6 @@ resetBtn.addEventListener('click', async () => {
   }
 });
 
-// ✅ Back button
 backBtn.addEventListener('click', () => {
   window.location.href = 'admin-dashboard.html';
 });
